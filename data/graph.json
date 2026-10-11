@@ -85,19 +85,14 @@
   ],
   "edges": [
     ["marine-ai", "d-ai"],
-    ["mfg-ai", "d-ai"],
     ["photosynthesis", "coffee"],
     ["photosynthesis", "p-space-farm"],
-    ["p-ai-energy", "mfg-ai"],
     ["p-space-nature", "kaist-stp"],
     ["p-space-nature", "marine-ai"],
     ["p-green-regions", "marine-ai"],
-    ["p-industrial-ai", "mfg-ai"],
     ["p-space-energy", "kaist-stp"],
     ["p-space-regions", "kaist-stp"],
     ["p-nature-cities", "marine-ai"],
-    ["p-public-ai", "mfg-ai"],
-    ["p-space-ai", "mfg-ai"],
     ["p-space-ai", "kaist-stp"],
     ["p-climate-ai", "marine-ai"],
     ["d-urban", "p-city-orbit"],
@@ -128,7 +123,6 @@
     ["d-fashion", "fashion-ax"],
     ["d-energy", "photosynthesis"],
     ["d-energy", "energy"],
-    ["d-mfg", "mfg-ai"],
     ["o-univ", "b2g"],
     ["d-sustain", "urban-review"],
     ["d-sustain", "o-univ"],
@@ -146,6 +140,12 @@
     ["d-spacetech", "p-city-orbit"],
     ["d-spacetech", "kaist-stp"],
     ["d-spacetech", "space"],
-    ["o-modulabs", "mfg-ai"]
+    ["mfg-ai", "d-ai"],
+    ["mfg-ai", "p-ai-energy"],
+    ["mfg-ai", "p-industrial-ai"],
+    ["mfg-ai", "p-public-ai"],
+    ["mfg-ai", "p-space-ai"],
+    ["mfg-ai", "d-mfg"],
+    ["mfg-ai", "o-modulabs"]
   ]
 }
