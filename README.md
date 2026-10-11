@@ -28,18 +28,9 @@ uploads/              images and videos used in the stories
 tools/serve.py        a small local server for editing the page on a Mac
 ```
 
-## How it stays updated
+## Editing
 
-1. Start the local editor from the repository root:
-
-   ```
-   python3 tools/serve.py
-   ```
-
-2. At http://127.0.0.1:8080/, open any node and press **✎ Edit**. Rename a node, change its type, rewrite its summary, add or remove connections, and write the story with images. Saving writes straight to `data/graph.json`, `content/`, and `uploads/`.
-3. Commit the changes and push to `main`. GitHub Pages publishes them within a minute or two.
-
-The published site has no editing server, so the Edit button stays hidden and visitors can only view.
+Content is edited locally with `tools/serve.py`, which adds an in-page editor for nodes, connections, and stories. The published site is read-only.
 
 ## Rules in `data/graph.json`
 
