@@ -220,6 +220,8 @@
   const tidy = labelCollide(0.5); tidy.initialize(nodes);
   for (let i = 0; i < 160; i++) { hubClear(); tidy(); }   // 여백 확보 → 글자 겹침 정리를 번갈아 반복
   for (let i = 0; i < 120; i++) tidy();   // 마지막은 글자 겹침 없애기를 우선
+  // 개별 미세 이동: "nudge": [dx, dy]는 배치가 끝난 뒤 그 노드만 옮긴다 (다른 노드 위치는 그대로)
+  nodes.filter(n => Array.isArray(n.nudge)).forEach(n => { n.x += n.nudge[0]; n.y += n.nudge[1]; });
   exps.forEach(n => { n.fx = n.fy = null; });
 
   // "layout" 연결은 배치 계산에만 쓰고 화면에는 그리지 않는다 (노드 위치를 유지한 채 선만 끊을 때)
