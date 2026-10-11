@@ -4,7 +4,7 @@
 
 <img src="uploads/261011-160120-hackathon-01.png" alt="Project Outline: Object Detection 기반의 경기분석영상 만들기">
 
-<div class="gs-center"><b>팀 구성 | 총 4인</b><br><b>주 역할 | 전략기획 및 모델튜닝, Coder</b><br>데이터 라벨링,<br>베이스라인 구축,<br>이미지 프로세싱 등<br>전 과정 참여</div>
+<div class="gs-center"><b>팀 구성 | 총 4인</b><br><b>주 역할 | 기획 및 모델링, 튜닝, Coder</b><br>데이터 라벨링,<br>베이스라인 구축,<br>이미지 프로세싱 등<br>전 과정 참여</div>
 
 <a class="gs-btn" href="https://drive.google.com/file/d/1DEXxjaGJfZzyLlpEVAOS3qjeVy8kNQ-A/view?usp=share_link">[ 최종자료 전체보기 ]</a>
 

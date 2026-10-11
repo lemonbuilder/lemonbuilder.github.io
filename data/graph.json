@@ -145,7 +145,7 @@
     ["mfg-ai", "p-public-ai"],
     ["mfg-ai", "p-space-ai"],
     ["mfg-ai", "d-mfg"],
-    ["mfg-ai", "o-modulabs"],
-    ["d-fashion", "fashion-ax"]
+    ["d-fashion", "fashion-ax"],
+    ["o-modulabs", "mfg-ai"]
   ]
 }
