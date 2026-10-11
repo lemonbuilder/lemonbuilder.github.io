@@ -27,7 +27,7 @@
   const spokes = hubs.flatMap(h => nodes.filter(n => !isHub(n) && !T[n.type].hollow).map(n => [h.id, n.id]));
   const edges = S.edges.concat(nodes.filter(n => n.orbit).map(n => [n.id, n.orbit]), spokes)
     .filter(([a, b]) => byId.has(a) && byId.has(b))
-    .map(([a, b, kind]) => ({ source: a, target: b, core: kind === "core" }));   // 세 번째 값 "core" = 핵심 연결
+    .map(([a, b, kind]) => ({ source: a, target: b, core: kind === "core", layoutOnly: kind === "layout" }));   // 세 번째 값: "core" = 핵심 연결, "layout" = 배치에만 쓰는 숨은 연결
   const isSat = n => !!n.orbit;
   const isSatEdge = e => isSat(e.source) || isSat(e.target);
   const ref = v => (typeof v === "string" ? byId.get(v) : v);
@@ -222,7 +222,9 @@
   for (let i = 0; i < 120; i++) tidy();   // 마지막은 글자 겹침 없애기를 우선
   exps.forEach(n => { n.fx = n.fy = null; });
 
-  const incident = n => edges.filter(e => e.source === n || e.target === n);
+  // "layout" 연결은 배치 계산에만 쓰고 화면에는 그리지 않는다 (노드 위치를 유지한 채 선만 끊을 때)
+  const shown = edges.filter(e => !e.layoutOnly);
+  const incident = n => shown.filter(e => e.source === n || e.target === n);
   const other = (e, n) => (e.source === n ? e.target : e.source);
 
   // ── 살아 있는 배치: 평소엔 제자리(home)로, 커서를 올리면 그 노드를 중심으로 포메이션이 바뀐다 ──
@@ -267,7 +269,7 @@
   // ── 그리기 ──────────────────────────────
   const svg = d3.select("#graph");
   const g = svg.append("g");
-  const link = g.append("g").selectAll("path").data(edges).join("path")
+  const link = g.append("g").selectAll("path").data(shown).join("path")
     .attr("class", e => "link" + (isSpoke(e) ? " spoke" : "") + (e.core ? " core" : "") + (T[e.source.type].hollow || T[e.target.type].hollow ? " dashed" : ""));
 
   const typeRank = n => Object.keys(T).indexOf(n.type);
@@ -481,7 +483,7 @@
 
   // 직접 고칠 수 있는 연결 = data/graph.json의 edges + (위성이면) 부모
   const explicitLinks = n => [
-    ...S.edges.filter(e => e.includes(n.id)).map(e => (e[0] === n.id ? e[1] : e[0])),
+    ...S.edges.filter(e => e.includes(n.id) && e[2] !== "layout").map(e => (e[0] === n.id ? e[1] : e[0])),
     ...(n.orbit ? [n.orbit] : [])
   ].filter((id, i, a) => byId.has(id) && a.indexOf(id) === i);
 

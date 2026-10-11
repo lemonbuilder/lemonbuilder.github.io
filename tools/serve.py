@@ -90,7 +90,9 @@ def update_node(node_id, payload):
 
     # 이 노드의 명시 연결을 새 목록으로 교체
     core = {(e[0] if e[1] == node_id else e[1]) for e in g["edges"] if node_id in e[:2] and e[2:] == ["core"]}
-    g["edges"] = [e for e in g["edges"] if node_id not in e[:2]]
+    # "layout"(배치에만 쓰는 숨은 연결)은 편집과 무관하게 유지하되, 같은 쌍을 다시 실제로 이으면 지운다
+    g["edges"] = [e for e in g["edges"]
+                  if node_id not in e[:2] or (e[2:] == ["layout"] and (e[1] if e[0] == node_id else e[0]) not in links)]
     n.pop("orbit", None)
     if is_poss(n) and len(links) == 1:
         n["orbit"] = links[0]  # 연결이 하나뿐인 가능성 = 그 노드의 위성

@@ -1,5 +1,5 @@
 {
-  "_readme": ["관계도 데이터. 내 Mac에서 python3 tools/serve.py 로 띄우면 상세 페이지의 ✎ Edit로 이름·타입·연결·본문을 고칠 수 있다. 이 파일을 직접 고쳐도 된다.", "node: id(영문, 주소에 쓰임) · label(그래프에 보이는 이름) · type(types의 키) · orbit(이 노드 하나에만 붙는 위성 가능성의 부모 id) · hoverLabel(호버 때 보일 이름, 선택) · detailLabel(상세 페이지 제목, 선택) · shift([dx, dy] 배치 미세 조정, 주변도 조금 함께 이동)", "node(선택): summary · period · link {href,text} — 상세 페이지에만 표시. 본문은 content/<id>.md", "edges: [a, b] 두 노드를 잇는다. [a, b, \"core\"]는 핵심 연결(굵은 선, 더 가깝게). 허브 연결(가능성 제외 전부)과 orbit 위성 연결은 자동이라 여기에 적지 않는다."],
+  "_readme": ["관계도 데이터. 내 Mac에서 python3 tools/serve.py 로 띄우면 상세 페이지의 ✎ Edit로 이름·타입·연결·본문을 고칠 수 있다. 이 파일을 직접 고쳐도 된다.", "node: id(영문, 주소에 쓰임) · label(그래프에 보이는 이름) · type(types의 키) · orbit(이 노드 하나에만 붙는 위성 가능성의 부모 id) · hoverLabel(호버 때 보일 이름, 선택) · detailLabel(상세 페이지 제목, 선택) · shift([dx, dy] 배치 미세 조정, 주변도 조금 함께 이동)", "node(선택): summary · period · link {href,text} — 상세 페이지에만 표시. 본문은 content/<id>.md", "edges: [a, b] 두 노드를 잇는다. [a, b, \"core\"]는 핵심 연결(굵은 선, 더 가깝게), [a, b, \"layout\"]은 배치에만 쓰고 그리지 않는 연결. 허브 연결(가능성 제외 전부)과 orbit 위성 연결은 자동이라 여기에 적지 않는다."],
   "brand": "NONLINEAR BY NATURE",
   "graphTitle": "A Map of Connected Life Nodes",
   "title": "An Unfinished Constellation",
@@ -122,6 +122,7 @@
     ["o-univ", "d-ai"],
     ["d-energy", "photosynthesis"],
     ["d-energy", "energy"],
+    ["o-univ", "b2g", "layout"],
     ["d-sustain", "urban-review"],
     ["d-sustain", "o-univ"],
     ["d-sustain", "d-urban"],
