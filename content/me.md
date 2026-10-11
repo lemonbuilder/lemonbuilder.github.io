@@ -8,4 +8,6 @@
 장기적인 안목과 직감을 갖고 미래를 준비하는 사람이고 싶습니다.  
 연락주세요. 
 lemonbuilder@gmail.com 
+https://github.com/lemonbuilder
+
 
