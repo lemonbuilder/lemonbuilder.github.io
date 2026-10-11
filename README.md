@@ -32,12 +32,4 @@ tools/serve.py        a small local server for editing the page on a Mac
 
 Content is edited locally with `tools/serve.py`, which adds an in-page editor for nodes, connections, and stories. The published site is read-only.
 
-## Rules in `data/graph.json`
-
-- The hub connects to every node automatically, except possibilities.
-- `orbit` marks a possibility that belongs to a single node; it is placed outside that node like a satellite.
-- `edges` are pairs like `[a, b]`; `[a, b, "core"]` marks a core connection and draws it as a thicker line.
-- `shift: [dx, dy]` nudges a node's position by hand.
-- `hoverLabel` and `detailLabel` show a different name on hover or on the detail page.
-
 This constellation is unfinished on purpose. A new node joins whenever something new begins.
