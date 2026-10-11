@@ -80,7 +80,7 @@ button { font: inherit; color: inherit; }
 }
 .node.experience text { font-size: 18px; font-weight: 700; fill: var(--ink); }
 .node.hub text { font-size: 18px; font-weight: 700; fill: var(--ink); }
-.node.hollow text { fill: var(--ink-2); font-style: italic; }
+.node.hollow text { fill: #888; font-style: italic; font-size: 13.2px; }   /* 가능성 이름은 0.8배 (도형 크기는 그대로) */
 
 /* 호버: 이어진 노드·선이 함께 떠오름 */
 .node circle.dot, .node text, .link {
