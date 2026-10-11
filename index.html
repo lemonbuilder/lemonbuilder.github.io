@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An Unfinished Constellation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="app-header">
+  <a class="brand" href="#/" id="brand"></a>
+  <div class="header-right">
+    <span class="step"><span class="step-num">Step ∞</span><span class="step-name">탐험 중</span></span>
+    <span class="divider"></span>
+    <span class="status"><span class="dot"></span>Unfinished</span>
+  </div>
+</header>
+
+<section class="graph-panel">
+  <div class="panel-header">
+    <span class="panel-title" id="graph-title"></span>
+    <div class="header-tools">
+      <button class="tool-btn" id="btn-refresh" type="button" title="다시 배치">↻ <span>Refresh</span></button>
+      <button class="tool-btn icon" id="btn-full" type="button" title="전체 화면">⛶</button>
+    </div>
+  </div>
+  <svg id="graph" aria-label="경험 관계도"></svg>
+  <div class="graph-legend" id="legend"></div>
+</section>
+
+<!-- 하위 페이지 -->
+<main id="detail" class="detail" hidden>
+  <div class="detail-inner">
+    <a class="back" href="#/">← Graph</a>
+    <article class="card">
+      <div class="card-head">
+        <span class="card-kind" id="d-kind"></span>
+        <span class="badge" id="d-badge"></span>
+        <button class="tool-btn edit-btn" id="d-edit" type="button" hidden>✎ Edit</button>
+      </div>
+      <div class="card-body">
+        <h1 class="view-only" id="d-title"></h1>
+        <!-- 편집 모드 요소(.edit-only)는 내 Mac의 serve.py로 띄웠을 때만 쓰인다 -->
+        <input class="edit-only title-input" id="e-label" type="text" maxlength="80" aria-label="노드 이름">
+        <!-- 허브처럼 이름이 여러 개인 노드: 위 큰 입력칸 = 상세 페이지 제목, 아래 두 칸 = 맵 이름 · 호버 이름 -->
+        <div class="row edit-only alias-row"><span class="k">Map:</span><input class="row-input" id="e-map" type="text" maxlength="80" aria-label="맵에 보이는 이름"></div>
+        <div class="row edit-only alias-row"><span class="k">Hover:</span><input class="row-input" id="e-hover" type="text" maxlength="120" aria-label="호버할 때 이름"></div>
+        <div class="row edit-only"><span class="k">Type:</span><select id="e-type" aria-label="타입"></select></div>
+        <div id="d-rows"></div>
+        <div class="section" id="d-body-wrap">
+          <div class="story view-only" id="d-body"></div>
+          <div class="editor edit-only" id="editor">
+            <div class="editor-bar">
+              <label class="tool-btn">＋ 그림 추가<input type="file" id="ed-file" accept="image/*" multiple hidden></label>
+              <span class="fmt">
+                <button type="button" class="tool-btn" data-fmt="b" title="굵게 ⌘B"><b>B</b></button>
+                <button type="button" class="tool-btn" data-fmt="i" title="기울임 ⌘I"><i>I</i></button>
+                <button type="button" class="tool-btn" data-fmt="shift+x" title="취소선 ⌘⇧X"><s>S</s></button>
+                <button type="button" class="tool-btn" data-fmt="shift+h" title="소제목 ⌘⇧H">H</button>
+                <button type="button" class="tool-btn" data-fmt="shift+8" title="목록 ⌘⇧8">•</button>
+                <button type="button" class="tool-btn" data-fmt="shift+." title="인용 ⌘⇧.">❝</button>
+                <button type="button" class="tool-btn" data-fmt="k" title="링크 ⌘K">🔗</button>
+              </span>
+              <span class="ed-hint">마크다운 · 엔터 = 줄바꿈 · 그림은 끌어다 놓거나 붙여넣기 · ⌘S 저장</span>
+            </div>
+            <textarea id="ed-text" spellcheck="false" placeholder="이 경험의 이야기를 적어주세요.
+
+## 소제목
+엔터는 줄바꿈, 빈 줄은 문단 나눔. **굵게**, [링크](https://...)"></textarea>
+            <div class="section-title">Preview</div>
+            <div class="story preview" id="ed-preview"></div>
+          </div>
+        </div>
+        <div class="section" id="d-summary-wrap">
+          <p class="summary view-only" id="d-summary"></p>
+          <textarea class="edit-only summary-input" id="e-summary" rows="2" maxlength="500" placeholder="한 줄 설명" aria-label="Summary"></textarea>
+        </div>
+        <div class="section" id="e-links-wrap">
+          <div class="section-title">Connected <span id="d-count"></span>
+            <button class="tool-btn mini" id="c-edit" type="button" hidden>✎ 수정</button>
+          </div>
+          <div class="tags view-only" id="d-related"></div>
+          <div class="edit-only">
+            <div class="tags" id="e-links"></div>
+            <select class="add-select" id="e-add" aria-label="연결할 노드 추가"></select>
+            <p class="ed-hint" id="e-hint"></p>
+          </div>
+        </div>
+        <div class="editor-actions edit-only">
+          <span class="ed-status" id="ed-status"></span>
+          <button class="tool-btn" id="ed-cancel" type="button">취소</button>
+          <button class="tool-btn primary" id="ed-save" type="button">저장</button>
+        </div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<script src="assets/vendor/d3.min.js"></script>
+<script src="assets/vendor/marked.min.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
