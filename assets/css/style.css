@@ -66,7 +66,7 @@ button { font: inherit; color: inherit; }
 #graph:active { cursor: grabbing; }
 
 .link { fill: none; stroke: var(--edge); stroke-width: 1.5; pointer-events: none; }
-.link.dashed { stroke-dasharray: 4 3; }
+.link.dashed { stroke-dasharray: 4 3; stroke-width: 0.8; }   /* 가능성 점선은 얇게 */
 .link.core { stroke: #8a8a8a; stroke-width: 3; }   /* 핵심 연결 */
 .link.spoke { stroke: #e2e2e2; stroke-width: 1; }
 
@@ -100,7 +100,7 @@ button { font: inherit; color: inherit; }
 .node.lift.hot.hub text { transform: translateY(-7px) scale(1.4); }
 .top-copy { pointer-events: none; }
 .link.lift { transform: translateY(-5px); stroke: var(--hi); stroke-width: 2.5; filter: drop-shadow(0 5px 3px rgba(233,30,99,.18)); }
-.link.lift.dashed { stroke: var(--edge); stroke-width: 1.5; filter: none; }   /* 가능성 연결선은 호버 때도 원래 회색 점선 */
+.link.lift.dashed { stroke: var(--edge); stroke-width: 0.8; filter: none; }   /* 가능성 연결선은 호버 때도 원래 회색 점선 */
 .hot-possibility .link.lift.dashed { stroke: #111; }   /* 가능성 노드 자체를 호버하면 그 연결선은 검게 */
 .hovering .node:not(.lift) { opacity: .3; }
 /* 호버 중에는 커서 아래 노드만 마우스를 받는다 → 끌려온 이웃이 커서를 가로채 깜빡이지 않게 */
