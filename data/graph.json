@@ -120,7 +120,6 @@
     ["fashion-ax", "p-green-ax"],
     ["o-univ", "urban-review", "core"],
     ["o-univ", "d-ai"],
-    ["d-fashion", "fashion-ax"],
     ["d-energy", "photosynthesis"],
     ["d-energy", "energy"],
     ["o-univ", "b2g"],
@@ -146,6 +145,7 @@
     ["mfg-ai", "p-public-ai"],
     ["mfg-ai", "p-space-ai"],
     ["mfg-ai", "d-mfg"],
-    ["mfg-ai", "o-modulabs"]
+    ["mfg-ai", "o-modulabs"],
+    ["d-fashion", "fashion-ax"]
   ]
 }
