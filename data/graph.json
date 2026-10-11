@@ -146,6 +146,8 @@
     ["mfg-ai", "p-space-ai"],
     ["mfg-ai", "d-mfg"],
     ["d-fashion", "fashion-ax"],
-    ["o-modulabs", "mfg-ai"]
+    ["o-modulabs", "mfg-ai"],
+    ["o-kaist", "o-univ"],
+    ["o-kaist", "energy"]
   ]
 }
