@@ -1,52 +1,52 @@
 # lemonbuilder.github.io
 
-**NONLINEAR BY NATURE** — a map of the connected nodes of my life.
+**NONLINEAR BY NATURE** — a map of connected life nodes.
 
 🔗 https://lemonbuilder.github.io
 
-I have never moved in a straight line. I have worked across the public sector, industry, academia, and civil society, from urban planning reviews to AI research on factory floors, from protecting dolphins with drones to exploring space ventures. Instead of a résumé that lists these one after another, I built this page as a constellation: my experiences, domains, organizations, interests, and the possibilities I have not reached yet, all connected to one another.
+A path that never moved in a straight line: across the public sector, industry, academia, and civil society, from urban planning reviews to AI research on factory floors, from protecting dolphins with drones to exploring space ventures. Instead of a résumé that lists these one after another, this page draws them as a constellation — experiences, domains, organizations, interests, and possibilities not yet reached, all connected to one another.
 
-## What you will see
+## What the page shows
 
-- **The map** — I sit at the center as the hub. Around me are my experiences, and around them are the domains, organizations, and interests they connect to. Dashed circles are possibilities: directions I could grow into next.
+- **The map** — The hub sits at the center. Experiences surround it, and around them are the domains, organizations, and interests they connect to. Dashed circles are possibilities: directions still open for the next step.
 - **Hover** over a node to see what it connects to. The map gently reshapes itself around that node.
-- **Click** a node to open its detail page, where I describe the work with text, images, and videos.
+- **Click** a node to open its detail page, with the story told in text, images, and videos.
 
-## How I built it
+## How it is built
 
-I wanted a page that I could keep growing, not a finished document. So I keep the structure and the stories separate:
+The page is meant to keep growing, not to be a finished document. Structure and stories are kept separate:
 
 ```
 index.html            the page itself (header, map, detail view)
 assets/
   css/style.css       styles
   js/app.js           map layout, hover and click interactions, detail pages, local editing
-  vendor/             libraries I use (d3, marked)
+  vendor/             libraries (d3, marked)
 data/graph.json       every node, type, and connection on the map
 content/<node-id>.md  the story behind each node, written in Markdown
 uploads/              images and videos used in the stories
-tools/serve.py        a small local server I use to edit the page on my Mac
+tools/serve.py        a small local server for editing the page on a Mac
 ```
 
-## How I keep it updated
+## How it stays updated
 
-1. I start my local editor from the repository root:
+1. Start the local editor from the repository root:
 
    ```
    python3 tools/serve.py
    ```
 
-2. At http://127.0.0.1:8080/, I open any node and press **✎ Edit**. From there I can rename a node, change its type, rewrite its summary, add or remove connections, and write the story with images. Saving writes straight to `data/graph.json`, `content/`, and `uploads/`.
-3. I commit the changes and push to `main`. GitHub Pages publishes them within a minute or two.
+2. At http://127.0.0.1:8080/, open any node and press **✎ Edit**. Rename a node, change its type, rewrite its summary, add or remove connections, and write the story with images. Saving writes straight to `data/graph.json`, `content/`, and `uploads/`.
+3. Commit the changes and push to `main`. GitHub Pages publishes them within a minute or two.
 
 The published site has no editing server, so the Edit button stays hidden and visitors can only view.
 
-## A few rules I follow in `data/graph.json`
+## Rules in `data/graph.json`
 
 - The hub connects to every node automatically, except possibilities.
 - `orbit` marks a possibility that belongs to a single node; it is placed outside that node like a satellite.
 - `edges` are pairs like `[a, b]`; `[a, b, "core"]` marks a core connection and draws it as a thicker line.
-- `shift: [dx, dy]` lets me nudge a node's position by hand.
-- `hoverLabel` and `detailLabel` let a node show a different name on hover or on its detail page.
+- `shift: [dx, dy]` nudges a node's position by hand.
+- `hoverLabel` and `detailLabel` show a different name on hover or on the detail page.
 
-This constellation is unfinished on purpose. I add a new node whenever I start something new.
+This constellation is unfinished on purpose. A new node joins whenever something new begins.
