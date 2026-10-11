@@ -148,6 +148,17 @@
   main.forEach((n, i) => { if (n.x == null) { n.angle = i; [n.x, n.y] = ellipse(i, 300); } });
 
   // 타입별 고리로 당기는 힘 (가능성 다리 노드는 고리 없이 이어진 노드 사이에 자리 잡는다)
+  // 허브 주변 여백: 허브 둘레 타원 안쪽(가로 HUB_R*KX, 세로 HUB_R)에는 다른 노드가 들어오지 못하게 밀어낸다
+  const HUB_R = 145;
+  function hubClear(alpha) {
+    nodes.forEach(n => {
+      if (isHub(n) || n.fx != null) return;
+      const ex = n.x / KX, d = Math.hypot(ex, n.y) || 1;
+      if (d >= HUB_R) return;
+      const push = (HUB_R - d) * (alpha == null ? 1 : Math.min(1, alpha * 4));
+      n.x += (ex / d) * push * KX; n.y += (n.y / d) * push;
+    });
+  }
   function rings(strength) {
     return alpha => nodes.forEach(n => {
       const r = n.orbit ? null : ring(n);
@@ -163,6 +174,7 @@
     .force("charge", d3.forceManyBody().strength(-260).distanceMax(240))
     .force("rings", rings(0.2))
     .force("labels", labelCollide(0.5))
+    .force("hubClear", hubClear)
     .stop();
   for (let i = 0; i < 500; i++) pre.tick();
 
@@ -190,6 +202,7 @@
     .force("rings", rings(0.2))
     .force("outward", outward)
     .force("labels", labelCollide(0.5))
+    .force("hubClear", hubClear)
     .alpha(0.5)
     .stop();
   for (let i = 0; i < 300; i++) sim.tick();
@@ -205,7 +218,8 @@
   });
   // 마무리: 남은 글자 겹침만 몇 번 더 정리
   const tidy = labelCollide(0.5); tidy.initialize(nodes);
-  for (let i = 0; i < 80; i++) tidy();
+  for (let i = 0; i < 160; i++) { hubClear(); tidy(); }   // 여백 확보 → 글자 겹침 정리를 번갈아 반복
+  for (let i = 0; i < 120; i++) tidy();   // 마지막은 글자 겹침 없애기를 우선
   exps.forEach(n => { n.fx = n.fy = null; });
 
   const incident = n => edges.filter(e => e.source === n || e.target === n);
